@@ -1,13 +1,7 @@
-//loops example now with the same as forEach example
-function factorial(num) {
-    // Start with 1
-    let answer = 1;
-    
-    // Multiply the numbers one by one
-    for (let i = 1; i <= num; i++) {
-        answer = answer * i;
-    }
-    
-    // Show the result
-    return answer;
+//loops example now with the same as forEach
+const cookies = ['chocolate', 'lemon', 'oatmeal', 'sugar'];
+
+for (let index = 0; index < cookies.length; index++) {
+    const item = cookies[index];
+    console.log(index, " ", item);
 }

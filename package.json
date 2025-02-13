@@ -1,0 +1,8 @@
+{
+  "name": "BookedIn",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
