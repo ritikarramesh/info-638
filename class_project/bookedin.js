@@ -2,6 +2,15 @@ const express = require("express");
 const app = express();
 const port = 3000;
 
+const indexRouter = require('./routes/index');
+
+var handlebars = require('express-handlebars').create();
+app.engine('handlebars', handlebars.engine);
+app.set('view engine', 'handlebars');
+
+
+app.use('/', indexRouter);
+
 app.use('/', function(req, res, next) {
   res.send("<h1>Hello BookedIn</h1>");
 });
@@ -20,9 +29,6 @@ app.use((err, req, res, next) => {
     res.status(500)
     res.send('500 - Server Error')
 })
-
-
-
 
 app.listen(port, () => console.log( //app.listen basically says keep the code running - we started a web server
     `Express started on http://localhost:${port}; ` +
