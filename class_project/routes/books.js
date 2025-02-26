@@ -1,5 +1,5 @@
 const express = require('express');
-const Book = require('../models/book');
+const Book = require('../models/books');
 const router = express.Router();
 
 router.get('/', function(req, res, next) {
