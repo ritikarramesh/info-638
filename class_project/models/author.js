@@ -3,5 +3,9 @@ const authors = [
     {firstName: "Craig", lastName: "Alanson"},
     {firstName: "Cixin", lastName: "Liu"},
   ]
-  
-  exports.all = authors
+
+exports.all = authors
+
+exports.add = (author) => {
+  authors.push(author);
+}

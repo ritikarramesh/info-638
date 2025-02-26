@@ -4,12 +4,7 @@ const router = express.Router();
 const Author = require('../models/author');
 
 router.get('/', function(req, res, next) {
-  const authors = [
-    {firstName: "James", lastName: "S. A. Corey"},
-    {firstName: "Craig", lastName: "Alanson"},
-    {firstName: "Cixin", lastName: "Liu"},
-  ]
-
+  const authors = Author.all
   res.render('authors/index', { title: 'BookedIn || Authors', authors: authors });
 });
 
