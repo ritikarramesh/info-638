@@ -1,6 +1,6 @@
 const books = [
     {title: "Leviathan Wakes", publishingYear: 2011, authorIds: ["0","1"]},
-    {title: "Columbus Day", publishingYear: 2012},
+    {title: "Columbus Day", publishingYear: 2012, authorIds: ["0","1"]},
     
   ]
 
