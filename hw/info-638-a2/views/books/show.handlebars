@@ -1,7 +1,7 @@
 <h1>{{book.title}}</h1>
 
 {{#if authors}}
- Written by {{#each authors}}{{this.firstName}} {{this.lastName}}{{#unless @last}}, {{/unless}}{{/each}}
+  Written by {{#each authors}}{{this.firstName}} {{this.lastName}}{{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
 
 <p>
@@ -9,7 +9,7 @@
 </p>
 
 {{#if genre}} {{!-- a section to see the type of genre associated with this book --}}
-<p> Genre: <a href="/genres/show/{{genre.id}}">{{genre.type}} - {{genre.description}}</a></p>
+<p> Genre: <a href="/genres/show/{{genre.id}}">{{genre.type}}</a></p>
 {{/if}}
 
 

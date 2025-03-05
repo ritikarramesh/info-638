@@ -23,7 +23,7 @@ router.post('/upsert', async (req, res, next) => {
 router.get('/edit', async (req, res, next) => {
   let genreIndex = req.query.id;
   let genre = Genre.get(genreIndex);
-  res.render('genres/form', { title: 'BookedIn || Genres', genre: genre, genreIndex: genreIndex, authors: Author.all, genres: Genre.all }); //this will render with books, author, and genre
+  res.render('genres/form', { title: 'BookedIn || Genres', genre: genre, genreIndex: genreIndex, authors: Author.all, genres: Genre.all }); //this will render books, author, and genre
 });
 
 router.get('/show/:id', async (req, res, next) => {

@@ -30,7 +30,7 @@ if (!book.authorIds) {  //this is an empty array if an author does not exist
 if (!book.genreId) {  //now same for genre - in case a genre does not exist
   book.genreId = [];
 }
-if (books.id) {  //update for if the book exists, otherwise add a new book
+if (book.id) {  //update for if the book exists, otherwise add a new book
   exports.update(book);
 } else {
   exports.add(book);

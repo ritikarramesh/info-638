@@ -28,20 +28,7 @@
     </select>
   </div>
 
-   {{!-- <div class="mb-3"> 
-    <label for="genreId">Genre</label>
-    <select name="genreId" id="genreId">
-      <option disabled value>-- select Genre --</option>
-      {{#each genres}}
-        <option value="{{@index}}"
-          {{#if (and @root.genre (in @root.genre.genreId @index))}}selected{{/if}}>
-            {{this.type}}
-        </option>
-      {{/each}}
-    </select>
-  </div> --}}
-
-   <div class="mb-3">
+  <div class="mb-3">
   <label for="genreId">Genre</label>
   <select name="genreId" id="genreId">
     <option disabled selected value>-- select Genre --</option>
