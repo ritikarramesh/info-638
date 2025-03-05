@@ -17,11 +17,11 @@
   </div>
 
   <div class="mb-3">
-    <label for="authorId">Author</label>
-    <select name="authorId" id="authorId">
+    <label for="authorIds">Author</label>
+    <select name="authorIds" id="authorIds">
       <option disabled selected value>-- select Author --</option>
       {{#each authors}}
-        <option value="{{@index}}" {{#if (and @root.book (eq @root.book.authorId @index))}}selected{{/if}}>
+        <option value="{{@index}}" {{#if (and @root.book (eq @root.book.authorIds @index))}}selected{{/if}}>
           {{this.firstName}} {{this.lastName}}
         </option>
       {{/each}}
