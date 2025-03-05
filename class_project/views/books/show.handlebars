@@ -8,7 +8,7 @@
   Originally published in {{book.publishingYear}}
 </p>
 
-{{#if genre}}
+{{#if genre}} {{!-- a section to see the type of genre associated with this book --}}
 <p> Genre: <a href="/genres/show/{{genre.id}}">{{genre.type}} - {{genre.description}}</a></p>
 {{/if}}
 

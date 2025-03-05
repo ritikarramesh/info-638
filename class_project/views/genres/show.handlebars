@@ -1,12 +1,13 @@
+{{!-- assignment 2 addition: implement a genres view - show --}}
 <h1>{{genre.type}}</h1>
 <p>{{genre.description}}</p>
 
 <h2>Books in this genre:</h2>
 
-{{#if books}}
+{{#if books}} {{!-- if there is books associate with this genre, it will show the title of the book --}}
     {{#each books}}
       <li><a href="/books/show/{{this.index}}">{{this.title}}</a></li>
     {{/each}}
-{{else}}
+{{else}} {{!-- if there arent any books associated with this genre, it will show 'No books found in this genre.' --}}
   <p>No books found in this genre.</p>
 {{/if}} 

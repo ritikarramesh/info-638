@@ -23,7 +23,7 @@ router.post('/upsert', async (req, res, next) => {
 router.get('/edit', async (req, res, next) => {
   let bookIndex = req.query.id;
   let book = Book.get(bookIndex);
-  res.render('books/form', { title: 'BookedIn || Books', book: book, bookIndex: bookIndex, authors: Author.all, genres: Genre.all });
+  res.render('books/form', { title: 'BookedIn || Books', book: book, bookIndex: bookIndex, authors: Author.all, genres: Genre.all }); //this will render with books, author, and genre
 });
 
 router.get('/show/:id', async (req, res, next) => {
@@ -36,20 +36,20 @@ router.get('/show/:id', async (req, res, next) => {
     templateVars['authors'] = templateVars.book.authorIds.map((authorId) => Author.get(authorId))
   }
   
-  if (templateVars.book.genreId && templateVars.book.genreId.length > 0) { //this is to check if the book has any genres assigned to it before trying to display the information
-    let genreId = templateVars.book.genreId[0];
-    let genre = Genre.get(genreId);
-    genre.id = genreId;
-    templateVars['genre'] = genre;
+  if (templateVars.book.genreId && templateVars.book.genreId.length > 0) {  //this checks if a book has any genres assigned
+    let genreId = templateVars.book.genreId[0];  //this gets the first genre ID from the array
+    let genre = Genre.get(genreId);  //this will retrieve the genre object using that ID
+    genre.id = genreId;  //this adds the ID to the genre object 
+    templateVars['genre'] = genre;  //this will add genre to template variables
   }
 
   res.render('books/show', templateVars);
 });
 
 router.get('/genres/:id', async (req, res, next) => {
-  let genre = Genre.get(req.params.id);
-  let booksInGenre = Book.all.filter(book => book.genreId == req.params.id);
-  res.render('books/show', { title: 'BookedIn || Books', genre: genre, books: booksInGenre });
+  let genre = Genre.get(req.params.id);  //this will get the genre by ID
+  let booksInGenre = Book.all.filter(book => book.genreId == req.params.id);  //this is to find books in this genre
+  res.render('books/show', { title: 'BookedIn || Books', genre: genre, books: booksInGenre });  //this will render with genre and filtered books
 });
 
 module.exports = router;

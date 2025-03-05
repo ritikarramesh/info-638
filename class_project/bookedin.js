@@ -5,7 +5,7 @@ const port = 3000;
 const indexRouter = require('./routes/index');
 const authorsRouter = require('./routes/authors');
 const booksRouter = require('./routes/books');
-const genresRouter = require('./routes/genres');
+const genresRouter = require('./routes/genres'); //assignment 2 addition
 
 const bodyParser = require('body-parser')
 
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
-app.use('/genres', genresRouter);
+app.use('/genres', genresRouter); //assignment 2 addition
 
 app.use('/', function(req, res, next) {
   res.send("<h1>Hello BookedIn</h1>");
@@ -57,6 +57,6 @@ app.use((err, req, res, next) => {
     res.send('500 - Server Error')
 })
 
-app.listen(port, () => console.log( //app.listen basically says keep the code running - we started a web server
+app.listen(port, () => console.log( //week 5 class note: app.listen basically says keep the code running -- 'we started a web server'
   `Express started on http://localhost:${port}; ` +
   `press Ctrl-C to terminate.`))

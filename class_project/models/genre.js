@@ -1,5 +1,5 @@
-const genres = [
-  {type: "Psychological Thriller", description: "This book has a psychological element!"},
+const genres = [ //assignment 2 addition: implement a genres model
+  {type: "Psychological Thriller", description: "This book has a psychological element!"}, 
   {type: "Romance", description: "This book has romantic elements!"},
   {type: "Fantasy", description: "This book has magical or supernatural elements!"},
   {type: "Dystopian Fiction", description: "This book has a dystopian society!"},
@@ -16,9 +16,9 @@ return genres[idx];
 }
 
 exports.upsert = (genre) => {
-  if (genre.id) {
+  if (genre.id) {  //update if the genre exists
     exports.update(genre);
-  } else {
+  } else {  //if it doesn't exist, add a new genre
     exports.add(genre);
   }
 }

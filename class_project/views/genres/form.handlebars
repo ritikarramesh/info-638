@@ -1,4 +1,5 @@
-<form action="/genres/upsert" role="form" method="post">
+{{!-- assignment 2 addition: implement a genres view - form --}}
+<form action="/genres/upsert" role="form" method="post"> {{!-- copied the same syntax from books form to keep it consistent --}}
 {{#if genre}}
     <div>
       <h2>{{genre.type}}</h2>
@@ -30,7 +31,7 @@
     </select>
   </div>
 
-  <div class="mb-3">
+  <div class="mb-3"> 
     <label for="genreId">Genre</label>
     <select name="genreId" id="genreId">
       <option disabled value>-- select Genre --</option>
