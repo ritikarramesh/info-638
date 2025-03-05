@@ -1,0 +1,22 @@
+{
+  "name": "BookedIn",
+  "version": "0.0.1",
+  "private": true,
+
+  "scripts": {
+    "start": "node ./bookedin.js",
+    "dev": "nodemon ./bookedin.js"
+  },
+
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.18.2",
+    "express-handlebars": "^8.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+
+ 
+
+}
