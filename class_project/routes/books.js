@@ -31,18 +31,20 @@ router.get('/show/:id', async (req, res, next) => {
     title: 'BookedIn || Books',
     book: Book.get(req.params.id)
   }
+  
   if (templateVars.book.authorIds) {
     templateVars['authors'] = templateVars.book.authorIds.map((authorId) => Author.get(authorId))
+  }
+  
+  if (templateVars.book.genreId && templateVars.book.genreId.length > 0) { //this is to check if the book has any genres assigned to it before trying to display the information
+    let genreId = templateVars.book.genreId[0];
+    let genre = Genre.get(genreId);
+    genre.id = genreId;
+    templateVars['genre'] = genre;
   }
 
   res.render('books/show', templateVars);
 });
-
-
-
-
-
-
 
 router.get('/genres/:id', async (req, res, next) => {
   let genre = Genre.get(req.params.id);
