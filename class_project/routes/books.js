@@ -3,6 +3,7 @@ const router = express.Router();
 
 const Book = require('../models/book');
 const Author = require('../models/author');
+const Genre = require('../models/genre');
 
 router.get('/', function(req, res, next) {
   const books = Book.all
@@ -22,7 +23,7 @@ router.post('/upsert', async (req, res, next) => {
 router.get('/edit', async (req, res, next) => {
   let bookIndex = req.query.id;
   let book = Book.get(bookIndex);
-  res.render('books/form', { title: 'BookedIn || Books', book: book, bookIndex: bookIndex, authors: Author.all });
+  res.render('books/form', { title: 'BookedIn || Books', book: book, bookIndex: bookIndex, authors: Author.all, genres: Genre.all });
 });
 
 router.get('/show/:id', async (req, res, next) => {
@@ -33,9 +34,20 @@ router.get('/show/:id', async (req, res, next) => {
   if (templateVars.book.authorIds) {
     templateVars['authors'] = templateVars.book.authorIds.map((authorId) => Author.get(authorId))
   }
+
   res.render('books/show', templateVars);
 });
 
 
-module.exports = router;
 
+
+
+
+
+router.get('/genres/:id', async (req, res, next) => {
+  let genre = Genre.get(req.params.id);
+  let booksInGenre = Book.all.filter(book => book.genreId == req.params.id);
+  res.render('books/show', { title: 'BookedIn || Books', genre: genre, books: booksInGenre });
+});
+
+module.exports = router;

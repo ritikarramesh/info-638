@@ -7,3 +7,9 @@
 <p>
   Originally published in {{book.publishingYear}}
 </p>
+
+{{#if genre}}
+<p> Genre: <a href="/genres/show/{{genre.id}}">{{genre.type}} - {{genre.description}}</a></p>
+{{/if}}
+
+

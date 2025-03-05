@@ -18,19 +18,28 @@
 
   <div class="mb-3">
     <label for="authorId">Author</label>
-    <select name="authorIds" multiple id="authorIds">
-      <option disabled value>-- select Author --</option>
+    <select name="authorId" id="authorId">
+      <option disabled selected value>-- select Author --</option>
       {{#each authors}}
-        <option value="{{@index}}"
-          {{#if (and @root.book (in @root.book.authorIds @index))}}selected{{/if}}>
-            {{this.firstName}} {{this.lastName}}
+        <option value="{{@index}}" {{#if (and @root.book (eq @root.book.authorId @index))}}selected{{/if}}>
+          {{this.firstName}} {{this.lastName}}
         </option>
       {{/each}}
     </select>
   </div>
-  
 
-  
+  <div class="mb-3">
+    <label for="genreId">Genre</label>
+    <select name="genreId" id="genreId">
+      <option disabled value>-- select Genre --</option>
+      {{#each genres}}
+        <option value="{{@index}}"
+          {{#if (and @root.book (in @root.book.genreId @index))}}selected{{/if}}>
+            {{this.type}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
 
   <button type="submit" class="btn btn-primary">Submit</button>
   

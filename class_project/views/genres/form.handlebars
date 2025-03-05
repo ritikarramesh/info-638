@@ -1,0 +1,48 @@
+<form action="/genres/upsert" role="form" method="post">
+{{#if genre}}
+    <div>
+      <h2>{{genre.type}}</h2>
+
+      <input type="hidden" name="id" value="{{genreIndex}}">
+    </div>
+  {{/if}}
+
+  <div>
+    <label for="type">Genre Type</label>
+    <input type="text" id="type" name="type" {{#if genre}}value="{{genre.type}}"{{/if}}>
+  </div>
+
+  <div>
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" {{#if genre}}value="{{genre.description}}"{{/if}}>
+  </div>
+
+  <div class="mb-3">
+    <label for="authorId">Author</label>
+    <select name="authorIds" multiple id="authorIds">
+      <option disabled value>-- select Author --</option>
+      {{#each authors}}
+        <option value="{{@index}}"
+          {{#if (and @root.book (in @root.book.authorIds @index))}}selected{{/if}}>
+            {{this.firstName}} {{this.lastName}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label for="genreId">Genre</label>
+    <select name="genreId" id="genreId">
+      <option disabled value>-- select Genre --</option>
+      {{#each genres}}
+        <option value="{{@index}}"
+          {{#if (and @root.genre (in @root.genre.genreId @index))}}selected{{/if}}>
+            {{this.type}}
+        </option>
+      {{/each}}
+    </select>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+  
+</form>
