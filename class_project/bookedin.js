@@ -1,4 +1,5 @@
 const express = require("express");
+const { credentials } = require('./config')
 const app = express();
 const port = 3000;
 
@@ -6,6 +7,8 @@ const indexRouter = require('./routes/index');
 const authorsRouter = require('./routes/authors');
 const booksRouter = require('./routes/books');
 const genresRouter = require('./routes/genres'); //assignment 2 addition
+const cookieParser = require('cookie-parser')
+const expressSession = require('express-session')
 
 const bodyParser = require('body-parser')
 
@@ -35,10 +38,27 @@ app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+app.use(cookieParser(credentials.cookieSecret)); //this is to create a username
+app.use(expressSession({
+  secret: credentials.cookieSecret,
+  resave: false,
+  saveUninitialized: false,
+  cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
+}));
+//session configuration
+//make it possible to use flash messages, and pass them to the view
+app.use((req, res, next) => {
+  res.locals.flash = req.session.flash
+  delete req.session.flash
+  next()
+})
+
+//application logic
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
 app.use('/genres', genresRouter); //assignment 2 addition
+
 
 app.use('/', function(req, res, next) {
   res.send("<h1>Hello BookedIn</h1>");
