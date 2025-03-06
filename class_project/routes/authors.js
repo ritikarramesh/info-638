@@ -19,7 +19,7 @@ router.post('/upsert', async (req, res, next) => {
   req.session.flash = {
     type: 'info',
     intro: 'Success!',
-    message: `the author has been ${createdOrupdated}!`,
+    message: `The author has been ${createdOrupdated}!`,
   };
   res.redirect(303, '/authors')
 });

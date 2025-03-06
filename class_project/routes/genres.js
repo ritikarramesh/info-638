@@ -21,7 +21,7 @@ router.post('/upsert', async (req, res, next) => {
   req.session.flash = {
     type: 'info',
     intro: 'Success!',
-    message: `the genre has been ${createdOrupdated}!`,
+    message: `The genre has been ${createdOrupdated}!`,
   };
   res.redirect(303, '/genres')
 });

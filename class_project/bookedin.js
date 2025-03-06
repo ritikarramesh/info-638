@@ -9,6 +9,9 @@ const booksRouter = require('./routes/books');
 const genresRouter = require('./routes/genres'); //assignment 2 addition
 const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
+const usersRouter = require('./routes/users');
+
+
 
 const bodyParser = require('body-parser')
 
@@ -53,11 +56,20 @@ app.use((req, res, next) => {
   next()
 })
 
+// session configuration
+//make the current user available in views
+app.use((req, res, next) => {
+  res.locals.currentUser = req.session.currentUser
+  next()
+})
+
+
 //application logic
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
 app.use('/genres', genresRouter); //assignment 2 addition
+app.use('/users', usersRouter);
 
 
 app.use('/', function(req, res, next) {
