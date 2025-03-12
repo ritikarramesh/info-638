@@ -1,4 +1,5 @@
 <form action="/books/upsert" role="form" method="post">
+<input type="hidden" name="_csrf" value="{{_csrfToken}}">
 {{#if book}}
     <div>
       <h2>{{this.title}} {{this.publishingYear}}</h2>

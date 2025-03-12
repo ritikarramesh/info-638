@@ -1,5 +1,6 @@
 {{!-- assignment 2 addition: implement a genres view - form --}}
 <form action="/genres/upsert" role="form" method="post"> {{!-- copied the same syntax from books form to keep it consistent --}}
+<input type="hidden" name="_csrf" value="{{_csrfToken}}">
 {{#if genre}}
     <div>
       <h2>{{genre.type}}</h2>

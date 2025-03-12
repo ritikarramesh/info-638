@@ -10,6 +10,7 @@ const genresRouter = require('./routes/genres'); //assignment 2 addition
 const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const usersRouter = require('./routes/users');
+const csrf = require('csurf')
 
 
 
@@ -41,6 +42,7 @@ app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
 app.use(cookieParser(credentials.cookieSecret)); //this is to create a username
 app.use(expressSession({
   secret: credentials.cookieSecret,
@@ -48,6 +50,13 @@ app.use(expressSession({
   saveUninitialized: false,
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
+
+app.use(csrf({ cookie: true }))
+app.use((req, res, next) => {
+  res.locals._csrfToken = req.csrfToken()
+  next()
+})
+
 //session configuration
 //make it possible to use flash messages, and pass them to the view
 app.use((req, res, next) => {
