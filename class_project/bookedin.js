@@ -7,10 +7,12 @@ const indexRouter = require('./routes/index');
 const authorsRouter = require('./routes/authors');
 const booksRouter = require('./routes/books');
 const genresRouter = require('./routes/genres'); //assignment 2 addition
+const booksUsersRouter = require('./routes/books_users');
 const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const usersRouter = require('./routes/users');
 const csrf = require('csurf')
+
 
 
 
@@ -79,6 +81,7 @@ app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
 app.use('/genres', genresRouter); //assignment 2 addition
 app.use('/users', usersRouter);
+app.use('/books_users', booksUsersRouter);
 
 
 app.use('/', function(req, res, next) {

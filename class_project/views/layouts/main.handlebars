@@ -16,7 +16,7 @@
         <li><a href="/books">Books</a></li>
         <li><a href="/genres">Genres</a></li> {{!-- //assignment 2 addition - genre added to the nav --}}
         {{#if currentUser}}
-          <li> Welcome {{currentUser.name}} </li>
+          <li> <a href="/users/profile"> Welcome {{currentUser.name}}</a></li>
           <li>
             <form action="/users/logout" role="form" method="post">
             <input type="hidden" name="_csrf" value="{{_csrfToken}}">
