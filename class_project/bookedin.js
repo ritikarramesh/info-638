@@ -12,6 +12,7 @@ const cookieParser = require('cookie-parser')
 const expressSession = require('express-session')
 const usersRouter = require('./routes/users');
 const csrf = require('csurf')
+const path = require('path');
 
 
 
@@ -43,6 +44,9 @@ app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
 
 app.use(bodyParser.urlencoded({ extended: true }))
+
+// adding routes for bootstrap
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')))
 
 
 app.use(cookieParser(credentials.cookieSecret)); //this is to create a username
