@@ -1,17 +1,15 @@
 <h1>{{book.title}}</h1>
-
 {{#if authors}}
   Written by {{#each authors}}{{this.firstName}} {{this.lastName}}{{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
-
 <p>
   Originally published in {{book.publishingYear}}
 </p>
-
-{{#if genre}} {{!-- a section to see the type of genre associated with this book --}}
-<p> Genre: <a href="/genres/show/{{genre.id}}">{{genre.type}}</a></p>
+{{#if genre}}
+  <p>
+    genre: {{genre.genre}}
+  </p>
 {{/if}}
-
 {{#if currentUser}}
 <div>
   <form action="/books_users/upsert" role="form" method="post">
@@ -21,7 +19,7 @@
     <label for="status">Status</label>
     <select name="status" id="status">
       {{#unless (and bookUser bookUser.status)}}
-        <option disabled value>-- select status --</option>
+        <option disabled selected value>-- select status --</option>
       {{/unless}}
       {{#each statuses}}
         <option value="{{this}}" {{#if (and @root.bookUser (eq @root.bookUser.status this))}}selected{{/if}}>{{this}}</option>
@@ -31,5 +29,3 @@
   </form>
 </div>
 {{/if}}
-
-

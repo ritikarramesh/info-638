@@ -1,23 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{{title}}</title>
     <link rel='stylesheet' href='/bootstrap/css/bootstrap.css' />
   </head>
-
-   <body data-bs-theme="dark">
+  <body data-bs-theme="dark">
     {{#if flash}}
       <div class="alert alert-dismissible fade show alert-{{flash.type}}" role="alert">
         <strong>{{flash.intro}}</strong> {{{flash.message}}}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
       </div>
     {{/if}}
-    
-
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+     <nav class="navbar navbar-expand-lg bg-body-tertiary">
       <div class="container-fluid">
         <a class="navbar-brand" href="/">BookedIn</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
@@ -43,17 +39,12 @@
               {{/if}}
             </div>
           </div>
+        </div>
       </div>
     </nav>
-
-    
-
     <div class="container">
       {{{body}}}
     </div>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-
   </body>
 </html>
-

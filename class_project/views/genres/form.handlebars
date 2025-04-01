@@ -1,24 +1,16 @@
-{{!-- assignment 2 addition: implement a genres view - form --}}
-<form action="/genres/upsert" role="form" method="post"> {{!-- copied the same syntax from books form to keep it consistent --}}
-<input type="hidden" name="_csrf" value="{{_csrfToken}}">
-{{#if genre}}
-    <div>
-      <h2>{{genre.type}}</h2>
+<h1>New Genre</h1>
 
+<form action="/genres/upsert" role="form" method="post">
+  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+  {{#if genre}}
+    <div>
+      <h2>{{genre.genre}}</h2>
       <input type="hidden" name="id" value="{{genreIndex}}">
     </div>
   {{/if}}
-
   <div>
-    <label for="type">Genre Type</label>
-    <input type="text" id="type" name="type" {{#if genre}}value="{{genre.type}}"{{/if}}>
+    <label for="genre">Genre</label>
+    <input type="text" id="genre" name="genre" {{#if genre}}value="{{genre.genre}}"{{/if}}>
   </div>
-
-  <div>
-    <label for="description">Description</label>
-    <input type="text" id="description" name="description" {{#if genre}}value="{{genre.description}}"{{/if}}>
-  </div>
-
   <button type="submit" class="btn btn-primary">Submit</button>
-  
 </form>

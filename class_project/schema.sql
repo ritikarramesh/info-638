@@ -1,12 +1,11 @@
 drop database if exists mydb;
-
 create database mydb;
 \c mydb;
 
 create table authors (
-    id serial primary key,
-    first_name text,
-    last_name text
+  id serial primary key,
+  first_name text,
+  last_name text
 );
 
 insert into authors (first_name, last_name) values ('Colleen', 'Hoover');
@@ -16,10 +15,10 @@ insert into authors (first_name, last_name) values ('Frank', 'Herbert');
 insert into authors (first_name, last_name) values ('J.K.', 'Rowling');
 
 create table books (
-    id serial primary key,
-    title text,
-    publishing_year int,
-    genre_id int
+  id serial primary key,
+  title text,
+  publishing_year int,
+  genre_id int
 );
 
 insert into books (title, publishing_year) values ('Verity', 2022);

@@ -1,25 +1,8 @@
 const express = require("express");
-const { credentials } = require('./config')
-const app = express();
-const port = 3000;
-
-const indexRouter = require('./routes/index');
-const authorsRouter = require('./routes/authors');
-const booksRouter = require('./routes/books');
-const genresRouter = require('./routes/genres'); //assignment 2 addition
-const booksUsersRouter = require('./routes/books_users');
-const cookieParser = require('cookie-parser')
-const expressSession = require('express-session')
-const usersRouter = require('./routes/users');
-const csrf = require('csurf')
 const path = require('path');
 
-
-
-
-const bodyParser = require('body-parser')
-
-var handlebars = require('express-handlebars').create({
+const { credentials } = require('./config')
+const handlebars = require('express-handlebars').create({
   helpers: {
     eq: (v1, v2) => v1 == v2,
     ne: (v1, v2) => v1 != v2,
@@ -39,17 +22,25 @@ var handlebars = require('express-handlebars').create({
   }
 });
 
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
+const expressSession = require('express-session')
+const csrf = require('csurf')
+
+const indexRouter = require('./routes/index');
+const authorsRouter = require('./routes/authors');
+const booksRouter = require('./routes/books');
+const usersRouter = require('./routes/users');
+const genresRouter = require('./routes/genres');
+const booksUsersRouter = require('./routes/books_users');
+
+const app = express();
+const port = 3000;
 
 app.engine('handlebars', handlebars.engine);
 app.set('view engine', 'handlebars');
-
 app.use(bodyParser.urlencoded({ extended: true }))
-
-// adding routes for bootstrap
-app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')))
-
-
-app.use(cookieParser(credentials.cookieSecret)); //this is to create a username
+app.use(cookieParser(credentials.cookieSecret));
 app.use(expressSession({
   secret: credentials.cookieSecret,
   resave: false,
@@ -57,54 +48,51 @@ app.use(expressSession({
   cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }));
 
+// this must come after we link in body-parser,
+// cookie-parser, and express-session
 app.use(csrf({ cookie: true }))
 app.use((req, res, next) => {
   res.locals._csrfToken = req.csrfToken()
   next()
 })
 
-//session configuration
-//make it possible to use flash messages, and pass them to the view
 app.use((req, res, next) => {
   res.locals.flash = req.session.flash
   delete req.session.flash
   next()
 })
 
-// session configuration
-//make the current user available in views
 app.use((req, res, next) => {
   res.locals.currentUser = req.session.currentUser
   next()
 })
 
+//template setup
+app.use('/bootstrap', express.static(path.join(__dirname, 'node_modules/bootstrap/dist')))
 
-//application logic
+
+// Application logic related
 app.use('/', indexRouter);
 app.use('/authors', authorsRouter);
 app.use('/books', booksRouter);
-app.use('/genres', genresRouter); //assignment 2 addition
 app.use('/users', usersRouter);
+app.use('/genres', genresRouter);
 app.use('/books_users', booksUsersRouter);
 
-
-app.use('/', function(req, res, next) {
-  res.send("<h1>Hello BookedIn</h1>");
-});
-
+// custom 404 page
 app.use((req, res) => {
-    res.type('text/plain')
-    res.status(404)
-    res.send('<h1>404 - Not Found</h1>' )
-  })
-
-app.use((err, req, res, next) => {
-    console.error(err.message)
-    res.type('text/plain')
-    res.status(500)
-    res.send('500 - Server Error')
+  res.status(404)
+  res.send('<h1>404 - Not Found</h1>')
 })
 
-app.listen(port, () => console.log( //week 5 class note: app.listen basically says keep the code running -- 'we started a web server'
+// custom 500 page
+app.use((err, req, res, next) => {
+  console.error(err.message)
+  res.type('text/plain')
+  res.status(500)
+  res.send('500 - Server Error')
+})
+
+app.listen(port, () => console.log(
   `Express started on http://localhost:${port}; ` +
   `press Ctrl-C to terminate.`))

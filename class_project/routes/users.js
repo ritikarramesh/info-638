@@ -1,38 +1,24 @@
 const express = require('express');
 const router = express.Router();
 
-const User = require('../models/user');
 const helpers = require('./helpers')
 
+const User = require('../models/user');
 const Book = require('../models/book');
 const BookUser = require('../models/book_user');
 
-function IsLoggedIn(req, res) {
-  if (req.session.currentUser) {
-    req.session.flash = {
-      type: 'info',
-      intro: 'Error!',
-      message: 'You are already logged in',
-    };
-    res.redirect(303, '/');
-    return true;
-  }
-  return false;
-}
 
 router.get('/register', async (req, res, next) => {
   if (helpers.isLoggedIn(req, res)) {
     return
   }
-  res.render('users/register', { title: 'BookedIn || Registration' });
+  res.render('users/register', { title: 'BookedIn || User registration' });
 });
-
 
 router.post('/register', async (req, res, next) => {
   if (helpers.isLoggedIn(req, res)) {
     return
   }
-
   console.log('body: ' + JSON.stringify(req.body))
   let result = User.register(req.body);
   if (result) {
@@ -100,10 +86,10 @@ router.post('/logout', async (req, res, next) => {
 });
 
 router.get('/profile', async (req, res, next) => {
-  if (helpers.isNotLoggedIn(req, res)) {
+  if (helpers.ForceLoggedInUser(req, res)) {
     return
   }
-  const booksUser = BookUser.AllForUser(req.session.currentUser.email);
+  const booksUser = BookUser.allForUser(req.session.currentUser.email);
   booksUser.forEach((bookUser) => {
     bookUser.book = Book.get(bookUser.bookId)
   })
