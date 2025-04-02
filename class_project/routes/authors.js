@@ -5,8 +5,8 @@ const helpers = require('./helpers')
 
 const Author = require('../models/author');
 
-router.get('/', async function(req, res, next) {
-  const authors = await Author.all()
+router.get('/', function(req, res, next) {
+  const authors = Author.all;
   res.render('authors/index', { title: 'BookedIn || Authors', authors: authors });
 });
 
@@ -40,8 +40,5 @@ router.get('/edit', async (req, res, next) => {
   let author = Author.get(authorIndex);
   res.render('authors/form', { title: 'BookedIn || Authors', author: author, authorIndex: authorIndex });
 });
-
-
-
 
 module.exports = router;

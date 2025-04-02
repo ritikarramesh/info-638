@@ -29,3 +29,36 @@
   </form>
 </div>
 {{/if}}
+
+<div>
+  <h2>Comments</h2>
+  {{#if currentUser}}
+  <div>
+    <form action="/comments/upsert" role="form" method="post">
+      <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+      <input type="hidden" name="bookId" value="{{bookId}}">
+      <div>
+        <label for="text">Add a comment:</label>
+        <textarea id="text" name="text" required></textarea>
+      </div>
+      <button type="submit">Add Comment</button>
+    </form>
+  </div>
+  {{/if}}
+
+  {{#if comments}}
+    {{#each comments}}
+      <div>
+        <p>
+          <strong>{{this.userEmail}}</strong>
+          {{#if (and @root.currentUser (eq @root.currentUser.email this.userEmail))}}
+            <a href="/comments/edit?id={{this.id}}">edit</a>
+          {{/if}}
+        </p>
+        <p>{{this.text}}</p>
+      </div>
+    {{/each}}
+  {{else}}
+    <p>No comments yet.</p>
+  {{/if}}
+</div>

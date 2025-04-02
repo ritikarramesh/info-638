@@ -1,19 +1,19 @@
-const db = require('../database')
+// const db = require('../database')
 
-exports.all = async () => {
- const { rows } = await db.getPool().query("select * from authors order by id");
- return db.camelize(rows);
-}
+// exports.all = async () => {
+//   const { rows } = await db.getPool().query("select * from authors order by id");
+//   return db.camelize(rows);
+//  }
 
-// const authors = [
-//   {firstName: "Colleen", lastName: "Hoover"},
-//   {firstName: "John", lastName: "Green"},
-//   {firstName: "Stephenie", lastName: "Meyer"},
-//   {firstName: "Frank", lastName: "Herbert"},
-//   {firstName: "J.K.", lastName: "Rowling"},
-// 
+const authors = [
+  {firstName: "Colleen", lastName: "Hoover"},
+  {firstName: "John", lastName: "Green"},
+  {firstName: "Stephenie", lastName: "Meyer"},
+  {firstName: "Frank", lastName: "Herbert"},
+  {firstName: "J.K.", lastName: "Rowling"},
+]
 
-// exports.all = authors
+exports.all = authors
 
 exports.add = (author) => {
   authors.push(author);

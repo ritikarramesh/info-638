@@ -1,9 +1,9 @@
-const genres = [ 
-  {type: "Psychological Thriller", description: "This book has a psychological element!"}, 
-  {type: "Romance", description: "This book has romantic elements!"},
-  {type: "Fantasy", description: "This book has magical or supernatural elements!"},
-  {type: "Dystopian Fiction", description: "This book has a dystopian society!"},
-]
+const genres = [
+  {genre: "Psychological Thriller"}, 
+  {genre: "Romance"},
+  {genre: "Fantasy"},
+  {genre: "Dystopian Fiction"}
+];
 
 exports.add = (genre) => {
   genres.push(genre);

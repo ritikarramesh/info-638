@@ -1,6 +1,7 @@
 module.exports = {
-  "cookieSecret": "",
+  "cookieSecret": "MysuperSecretCookieSecret",
   "postgres": {
-    "connectionString": ""
+    "connectionString": process.env.DBCONNECTIONSTRING || "postgresql://postgres:mypostgresql@localhost:5432/mydb"
   }
 }
+  

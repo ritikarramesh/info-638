@@ -4,14 +4,14 @@
   "private": true,
   "scripts": {
     "start": "node ./bookedin.js",
-    "dev": "nodemon ./bookedin.js"
+    "dev": "./node_modules/nodemon/bin/nodemon.js bookedin.js "
   },
   "dependencies": {
     "body-parser": "^1.20.3",
     "bootstrap": "^5.3.3",
     "cookie-parser": "^1.4.7",
     "csurf": "^1.10.0",
-    "express": "^4.18.2",
+    "express": "^4.21.2",
     "express-handlebars": "^8.0.1",
     "express-session": "^1.18.1",
     "lodash": "^4.17.21",

@@ -7,6 +7,7 @@ const users = [
   }
 ]
 
+
 var crypto = require('crypto');
 
 const createSalt = () => {
