@@ -32,13 +32,15 @@
 
 <div>
   <h2>Comments</h2>
+  {{!--  this is the new comment form which will only show to logged in users --}}
   {{#if currentUser}}
   <div>
     <form action="/comments/upsert" role="form" method="post">
       <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-      <input type="hidden" name="bookId" value="{{bookId}}">
+      <input type="hidden" name="bookId" value="{{bookId}}">{{!-- this will keep track of which book this comment belongs to --}}
       <div>
         <label for="text">Add a comment:</label>
+        {{!-- the text area for the comment content --}}
         <textarea id="text" name="text" required></textarea>
       </div>
       <button type="submit">Add Comment</button>
@@ -46,15 +48,19 @@
   </div>
   {{/if}}
 
+  {{!-- this will show the existing comments --}}
   {{#if comments}}
     {{#each comments}}
       <div>
         <p>
+          {{!-- this will show the email of who made the comment --}}
           <strong>{{this.userEmail}}</strong>
+          {{!-- this shows the edit link only if the current user is the author of this comment --}}
           {{#if (and @root.currentUser (eq @root.currentUser.email this.userEmail))}}
             <a href="/comments/edit?id={{this.id}}">edit</a>
           {{/if}}
         </p>
+        {{!-- this will show the actual comment text --}}
         <p>{{this.text}}</p>
       </div>
     {{/each}}

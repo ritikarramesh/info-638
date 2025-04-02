@@ -5,7 +5,7 @@
 //   return db.camelize(rows);
 //  }
 
-const authors = [
+const authors = [ //brought this back because it was causing errors, I dont think my db is connected, so for assignment purposes I brought it back.
   {firstName: "Colleen", lastName: "Hoover"},
   {firstName: "John", lastName: "Green"},
   {firstName: "Stephenie", lastName: "Meyer"},
