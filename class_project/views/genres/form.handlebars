@@ -4,13 +4,13 @@
   <input type="hidden" name="_csrf" value="{{_csrfToken}}">
   {{#if genre}}
     <div>
-      <h2>{{genre.genre}}</h2>
-      <input type="hidden" name="id" value="{{genreIndex}}">
+      <h2>{{genre.name}}</h2>
+      <input type="hidden" name="id" value="{{genre.id}}">
     </div>
   {{/if}}
   <div>
-    <label for="genre">Genre</label>
-    <input type="text" id="genre" name="genre" {{#if genre}}value="{{genre.genre}}"{{/if}}>
+    <label for="name">Genre</label>
+    <input type="text" id="name" name="name" {{#if genre}}value="{{genre.name}}"{{/if}}>
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>

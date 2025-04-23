@@ -5,8 +5,8 @@ const helpers = require('./helpers')
 
 const Author = require('../models/author');
 
-router.get('/', function(req, res, next) {
-  const authors = Author.all;
+router.get('/', async function(req, res, next) {
+  const authors = await Author.all()
   res.render('authors/index', { title: 'BookedIn || Authors', authors: authors });
 });
 
@@ -22,7 +22,7 @@ router.post('/upsert', async (req, res, next) => {
     return
   }
   console.log('body: ' + JSON.stringify(req.body))
-  Author.upsert(req.body);
+  await Author.upsert(req.body);
   let createdOrupdated = req.body.id ? 'updated' : 'created';
   req.session.flash = {
     type: 'info',
@@ -36,9 +36,12 @@ router.get('/edit', async (req, res, next) => {
   if (helpers.ForceLoggedInUser(req, res)) {
     return
   }
-  let authorIndex = req.query.id;
-  let author = Author.get(authorIndex);
-  res.render('authors/form', { title: 'BookedIn || Authors', author: author, authorIndex: authorIndex });
+  let author = await Author.get(req.query.id);
+  res.render('authors/form', { title: 'BookedIn || Authors', author: author});
 });
 
+
+
+
 module.exports = router;
+

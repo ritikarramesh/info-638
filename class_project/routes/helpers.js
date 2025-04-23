@@ -23,3 +23,4 @@ exports.ForceLoggedInUser = (req, res) => {
   res.redirect(302, '/');
   return true;
 }
+

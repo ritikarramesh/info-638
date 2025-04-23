@@ -2,7 +2,7 @@
 <a href="/Genres/form">Create a new Genre</a>
 {{#each genres}}
 <li>
-  {{@index}} - {{this.genre}}
-  <a href="/Genres/edit?id={{@index}}">edit</a>
+  {{this.id}} - {{this.name}}
+  <a href="/Genres/edit?id={{this.id}}">edit</a>
 </li>
 {{/each}}
