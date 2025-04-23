@@ -1,12 +1,4 @@
-const users = [
-  {
-    email:"rramesh@pratt.edu",
-    name:"Ritika",
-    salt:"9821ea0e75c6046e96e38f905ab0e436",
-    encryptedPassword:"31df8d4e1b6ca4facf4e45f55307704f7ba794c6c265495964c0a768faab4b6b"
-  }
-]
-
+const db = require('../database')
 
 var crypto = require('crypto');
 
@@ -18,30 +10,27 @@ const encryptPassword = (password, salt) => {
   return crypto.pbkdf2Sync(password, salt, 310000, 32, 'sha256').toString('hex')
 }
 
-exports.register = (user) => {
-  if (exports.getByEmail(user.email)){
+exports.register = async (user) => {
+  if (await exports.getByEmail(user.email)){
     return false
   }
   let salt = createSalt();
-  let newUser = {
-    email: user.email,
-    name: user.name,
-    salt: salt,
-    encryptedPassword: encryptPassword(user.password, salt)
-  }
-  users.push(newUser);
-  return true;
+  let encryptedPassword = encryptPassword(user.password, salt)
+  return db.getPool()
+    .query("INSERT INTO users(email, name, salt, password) VALUES($1, $2, $3, $4) RETURNING *",
+      [user.email, user.name, salt, encryptedPassword])
 }
 
-exports.getByEmail = (email) => {
-  return users.find((user)=>{return user.email.toLowerCase() === email.toLowerCase()});
+exports.getByEmail = async (email) => {
+  const { rows } = await db.getPool().query("select * from users where email = $1", [email])
+  return db.camelize(rows)[0]
 }
 
-exports.login = (login) => {
-  let user = exports.getByEmail(login.email);
+exports.login = async (login) => {
+  let user = await exports.getByEmail(login.email);
   if (user) {
     let encryptedPassword = encryptPassword(login.password, user.salt)
-    if (user.encryptedPassword == encryptedPassword) {
+    if (user.password == encryptedPassword) {
       return user;
     }
   }

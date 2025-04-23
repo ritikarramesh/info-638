@@ -20,7 +20,7 @@ router.post('/register', async (req, res, next) => {
     return
   }
   console.log('body: ' + JSON.stringify(req.body))
-  let result = User.register(req.body);
+  let result = await User.register(req.body);
   if (result) {
     req.session.flash = {
       type: 'info',
@@ -51,7 +51,7 @@ router.post('/login', async (req, res, next) => {
     return
   }
   console.log('body: ' + JSON.stringify(req.body))
-  let user = User.login(req.body);
+  let user = await User.login(req.body);
   if(user) {
     req.session.currentUser = user;
     req.session.flash = {
@@ -101,4 +101,3 @@ router.get('/profile', async (req, res, next) => {
 
 
 module.exports = router;
-
