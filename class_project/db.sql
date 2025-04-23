@@ -1,8 +1,8 @@
-drop database if exists my_first_db;
+drop database if exists mydb;
 
-create database my_first_db;
+create database mydb;
 
-\c my_first_db
+\c mydb
 
 CREATE TABLE "users" (
   "id" serial,
