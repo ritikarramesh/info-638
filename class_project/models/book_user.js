@@ -1,36 +1,46 @@
-const booksUsers = [
-  {bookId: "0", userEmail: "rramesh@pratt.edu", status: "finished"},
-  {bookId: "1", userEmail: "rramesh@pratt.edu", status: "reading"}
-];
+const db = require('../database')
 
 exports.statuses = [
   "todo","reading","finished"
 ]
 
-exports.add = (bookUser) => {
-  booksUsers.push(bookUser);
+exports.add = async (bookUser) => {
+  return db.getPool()
+    .query(`INSERT INTO
+            books_users(book_id, user_id, read_status)
+            VALUES($1, $2, $3) RETURNING *`,
+      [bookUser.bookId, bookUser.userId, bookUser.status]);
 }
 
-exports.get = (bookId, userEmail) => {
-  return booksUsers.find((bu) => {
-    return bu.bookId === bookId && bu.userEmail === userEmail;
-  })
-}
-
-exports.allForUser = (userEmail) => {
-  return booksUsers.filter((bu) => {
-    return bu.userEmail === userEmail;
-  })
-}
-
-exports.update = (idx, bookUser) => {
-  booksUsers[idx] = bookUser;
+exports.update = async (bookUser) => {
+  return await db.getPool()
+    .query("UPDATE books_users SET read_status = $1 where id = $2 RETURNING *",
+      [bookUser.status, bookUser.id]);
 }
 
 exports.upsert = (bookUser) => {
-  let idx = booksUsers.findIndex((bu)=>{
-    return bu.bookId === bookUser.bookId &&
-      bu.userEmail === bookUser.userEmail;
-  })
-  idx < 0 ? exports.add(bookUser) : exports.update(idx, bookUser);
+  if (bookUser.id) {
+    return exports.update(bookUser);
+  } else {
+    return exports.add(bookUser);
+  }
+}
+
+exports.get = async (book, user) => {
+  const { rows } = await db.getPool().query(`
+    select *
+    from books_users
+    where book_id = $1 and user_id = $2`,
+    [book.id, user.id])
+  return db.camelize(rows)[0]
+}
+
+exports.allForUser = async (user) => {
+  const { rows } = await db.getPool().query(`
+    select books.title, books_users.read_status
+    from books_users
+    join books on books.id = books_users.book_id
+    where user_id = $1;`,
+    [user.id]);
+  return db.camelize(rows);
 }

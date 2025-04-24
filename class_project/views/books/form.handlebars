@@ -1,42 +1,46 @@
 <h1>New Book</h1>
 
 <form action="/books/upsert" role="form" method="post">
-  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-  {{#if book}}
-    <div>
-      <h2>{{book.title}}</h2>
-      <input type="hidden" name="id" value="{{bookIndex}}">
-    </div>
-  {{/if}}
+
+<input type="hidden" name="_csrf" value="{{_csrfToken}}">
+{{#if book}}
   <div>
-    <label for="title">Title</label>
-    <input type="text" id="title" name="title" {{#if book}}value="{{book.title}}"{{/if}}>
+    <h2>{{book.title}}</h2>
+    <input type="hidden" name="id" value="{{bookIndex}}">
   </div>
-  <div>
-    <label for="publishing_year">Publishing year</label>
-    <input type="number" step="1" placeholder="2000" id="publishing_year" name="publishingYear" {{#if book}}value="{{book.publishingYear}}"{{/if}}>
-  </div>
-    <div class="mb-3">
-    <label for="authorIds">Authors</label>
-    <select name="authorIds" multiple id="authorIds">
+{{/if}}
+<div>
+  <label for="title">Title</label>
+  <input type="text" id="title" name="title" {{#if book}}value="{{book.title}}"{{/if}}>
+</div>
+<div>
+  <label for="publishing_year">Publishing year</label>
+  <input type="number" step="1" placeholder="2000" id="publishing_year" name="publishingYear" {{#if book}}value="{{book.publishingYear}}"{{/if}}>
+</div>
+
+ <div>
+    <label for="author_ids">Author</label>
+    <select name="authorIds" multiple id="author_ids">
       <option disabled value>-- select Author --</option>
       {{#each authors}}
-        <option value="{{@index}}" {{#if (and @root.book (in @root.book.authorIds @index))}}selected{{/if}}>
+        <option value="{{this.id}}" {{#if (and @root.book (in @root.book.authorIds this.id))}}selected{{/if}}>
           {{this.firstName}} {{this.lastName}}
         </option>
       {{/each}}
-    </select>
-  </div>
-  <div>
-    <label for="genre_id">Genre</label>
-    <select name="genreId" id="genre_id">
-      <option disabled value>-- select Genre --</option>
-      {{#each genres}}
-        <option value="{{@index}}" {{#if (and @root.book (eq @root.book.genreId @index))}}selected{{/if}}>
-          {{this.genre}}
-        </option>
-      {{/each}}
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
+  </select>
+</div>
+
+<div>
+  <label for="genre_id">Genre</label>
+  <select name="genreId" id="genre_id">
+    <option disabled value>-- select Genre --</option>
+    {{#each genres}}
+      <option value="{{this.id}}" {{#if (and @root.book (eq @root.book.genreId this.id))}}selected{{/if}}>
+        {{this.name}}
+      </option>
+    {{/each}}
+  </select>
+</div>
+
+<button type="submit" class="btn btn-primary">Submit</button>
 </form>

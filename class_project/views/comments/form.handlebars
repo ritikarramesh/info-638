@@ -1,16 +1,11 @@
-<h1>{{#if comment}}Edit{{else}}New{{/if}} Comment</h1>
+<h1>Comment</h1>
 
 <form action="/comments/upsert" role="form" method="post">
   <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-  <input type="hidden" name="bookId" value="{{bookId}}">
-  {{#if comment}}
-    <input type="hidden" name="id" value="{{comment.id}}">
-  {{/if}}
-  
+  <input type="hidden" name="id" value="{{comment.id}}"> // note the deleted user and book reference
   <div>
-    <label for="text">Your Comment</label>
-    <textarea id="text" name="text" required>{{#if comment}}{{comment.text}}{{/if}}</textarea>
+    <textarea rows="5" id="comment" name="comment">{{comment.comment}}</textarea>
   </div>
-  
-  <button type="submit">Submit</button>
+  <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+

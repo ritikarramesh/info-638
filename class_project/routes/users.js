@@ -86,18 +86,13 @@ router.post('/logout', async (req, res, next) => {
 });
 
 router.get('/profile', async (req, res, next) => {
-  if (helpers.ForceLoggedInUser(req, res)) {
+  if (helpers.isNotLoggedIn(req, res)) {
     return
   }
-  const booksUser = BookUser.allForUser(req.session.currentUser.email);
-  booksUser.forEach((bookUser) => {
-    bookUser.book = Book.get(bookUser.bookId)
-  })
-  res.render('users/profile',
-    { title: 'BookedIn || Profile',
-      user: req.session.currentUser,
-      booksUser: booksUser });
+  const booksUser = await BookUser.allForUser(req.session.currentUser);
+  res.render('users/profile', { title: 'BookedIn || Profile', user: req.session.currentUser, booksUser: booksUser });
 });
+
 
 
 module.exports = router;
