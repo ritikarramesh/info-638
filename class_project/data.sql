@@ -1,4 +1,4 @@
-\c mydb
+-- \c mydb
 
 insert into authors (first_name, last_name) values ('Colleen', 'Hoover');
 insert into authors (first_name, last_name) values ('John', 'Green');

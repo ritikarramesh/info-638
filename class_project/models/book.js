@@ -19,7 +19,6 @@ exports.add = async (book) => {
   return newBook
 }
 
-
 exports.update = async (book) => {
   const { rows } = await db.getPool()
     .query("UPDATE books SET title = $1, publishing_year = $2, genre_id = $3 where id = $4 RETURNING *",
@@ -29,7 +28,6 @@ exports.update = async (book) => {
   await addAuthorsToBook(newBook, book.authorIds)
   return newBook
 }
-
 
 exports.upsert = (book) => {
   if (book.authorIds && ! Array.isArray(book.authorIds)) {

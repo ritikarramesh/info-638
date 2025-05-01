@@ -86,7 +86,7 @@ router.post('/logout', async (req, res, next) => {
 });
 
 router.get('/profile', async (req, res, next) => {
-  if (helpers.isNotLoggedIn(req, res)) {
+  if (helpers.ForceLoggedInUser(req, res)) {
     return
   }
   const booksUser = await BookUser.allForUser(req.session.currentUser);
