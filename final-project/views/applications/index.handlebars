@@ -1,0 +1,28 @@
+<div style="padding: 32px;">
+    <h1>Apply to Adopt a Dog</h1>
+    <ul
+        style="margin-top: 32px; display: flex; flex-direction: row; flex-wrap: wrap; gap: 32px; list-style: none; padding: 0; justify-content: space-between;">
+        {{#each dogs}}
+        <li style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px; width: 48%;">
+            <img src="https://loremflickr.com/320/240/dog" alt="Dog" style="width: 50%; border-radius: 8px;">
+            <h3 style="margin-top: 16px;">{{this.name}}</h3>
+            <p>Breed: {{this.breed}}</p>
+            <p>Age: {{this.age}}</p>
+            <p>Gender: {{this.gender}}</p>
+            <p>Size: {{this.size}}</p>
+            <p>Color: {{this.color}}</p>
+            <p>Description: {{this.description}}</p>
+            <p>Shelter: {{this.shelter.name}}</p>
+            <a href="/applications/form?dogId={{this.id}}">Apply</a>
+        </li>
+        {{/each}}
+    </ul>
+
+    <h2 style="margin-top: 32px;">Your Applications</h2>
+    {{#each applications}}
+    <li>
+        <a href="/applications/show/{{this.id}}">Application -
+            {{dateStr this.submissionDate}}</a>
+    </li>
+    {{/each}}
+</div>

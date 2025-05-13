@@ -1,0 +1,48 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
+</head>
+
+<body>
+    {{#if flash}}
+    <div style="text-align: center; padding: 8px;">
+        <strong>{{flash.intro}}</strong>
+        {{{flash.message}}}
+    </div>
+    {{/if}}
+    <nav style="padding: 8px 32px;">
+      <ul style="display: flex; justify-content: space-between; align-items: center; list-style: none; padding: 0;">
+        <li><a href="/" style="font-size: 24px; font-weight: bold; text-decoration: none;">BarkedIn</a></li>
+        {{#if currentUser}}
+          {{!-- <li>
+            <a href="/users/profile">Welcome {{currentUser.name}}</a>
+          </li> --}}
+          <li>
+            <form action="/users/logout" role="form" method="post">
+              <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+              <button type="submit" class="btn">Log Out</button>
+            </form>
+          </li>
+        {{else}}
+        <div style="display: flex; justify-content: space-between; align-items: center; list-style: none; padding: 0; gap: 32px;">
+          <li>
+            <a href="/users/signup">Sign Up</a>
+          </li>
+          <li>
+            <a href="/users/login">Log In</a>
+          </li>
+          </div>
+        {{/if}}
+      </ul>
+    </nav>
+    <div>
+        {{{body}}}
+    </div>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

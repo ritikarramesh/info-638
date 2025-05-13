@@ -1,0 +1,75 @@
+<div style="padding: 32px; width: 75%; margin: 0 auto;">
+  <h1>Application - {{ dateStr application.submissionDate }}</h1>
+
+  <section style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
+    <img src="https://loremflickr.com/320/240/dog" alt="Dog" style="width: 50%; border-radius: 8px;">
+    <h3 style="margin-top: 16px;">{{dog.name}}</h3>
+    <p>Breed: {{dog.breed}}</p>
+    <p>Age: {{dog.age}}</p>
+    <p>Gender: {{dog.gender}}</p>
+    <p>Size: {{dog.size}}</p>
+    <p>Color: {{dog.color}}</p>
+    <p>Description: {{dog.description}}</p>
+    <p>Shelter: {{dog.shelter.name}}</p>
+</section>
+
+  
+  <section style="margin-top: 32px; border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
+    <div class="mb-4">
+      <p class="form-label">Status</p>
+      <p class="form-control-static">{{ application.status }}</p>
+    </div>
+
+    <div class="mb-4">
+      <p class="form-label">Name</p>
+      <p class="form-control-static">{{ application.name }}</p>
+    </div>    
+    
+    <div class="mb-4">
+      <p class="form-label">Phone</p>
+      <p class="form-control-static">{{ application.phone }}</p>
+    </div>
+    
+    <div class="mb-4">
+      <p class="form-label">Address</p>
+      <p class="form-control-static">{{ application.address }}</p>
+    </div>
+    
+    <div style="display: flex; flex-direction: row; gap: 16px;">
+      <div>
+        <p class="form-label">City</p>
+        <p class="form-control-static">{{ application.city }}</p>
+      </div>
+      <div>
+        <p class="form-label">State</p>
+        <p class="form-control-static">{{ application.state }}</p>
+      </div>
+      <div>
+        <p class="form-label">Zip Code</p>
+        <p class="form-control-static">{{ application.zipCode }}</p>
+      </div>
+    </div>
+    
+    <div class="mt-4 mb-4">
+      <p class="form-label">Housing Type</p>
+      <p class="form-control-static">{{ application.housingType }}</p>
+    </div>
+    
+    <div class="mb-4">
+      <p class="form-label">Activity Level</p>
+      <p class="form-control-static">{{ application.activityLevel }}</p>
+    </div>
+    
+    <div class="mb-4">
+      <p class="form-label">Why do you want to adopt this dog?</p>
+      <p class="form-control-static">{{ application.reason }}</p>
+    </div>
+    
+    <div class="mb-4">
+      <p class="form-label">Additional information shared</p>
+      <p class="form-control-static">{{ application.notes }}</p>
+    </div>
+    
+    
+  </section>
+</div>
