@@ -2,7 +2,7 @@
   <h1>Application - {{ dateStr application.submissionDate }}</h1>
 
   <section style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
-    <img src="https://loremflickr.com/320/240/dog" alt="Dog" style="width: 50%; border-radius: 8px;">
+    <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog" style="width: 50%; border-radius: 8px;"/>
     <h3 style="margin-top: 16px;">{{dog.name}}</h3>
     <p>Breed: {{dog.breed}}</p>
     <p>Age: {{dog.age}}</p>
@@ -13,8 +13,10 @@
     <p>Shelter: {{dog.shelter.name}}</p>
 </section>
 
+
+<h2 style="margin-top: 32px;">Application Details</h2>
   
-  <section style="margin-top: 32px; border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
+  <section style="margin-top: 16px; border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
     <div class="mb-4">
       <p class="form-label">Status</p>
       <p class="form-control-static">{{ application.status }}</p>
