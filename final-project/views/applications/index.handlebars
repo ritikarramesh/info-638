@@ -1,28 +1,37 @@
-<div style="padding: 32px;">
-    <h1>Apply to Adopt a Dog</h1>
-    <ul
-        style="margin-top: 32px; display: flex; flex-direction: row; flex-wrap: wrap; gap: 32px; list-style: none; padding: 0; justify-content: space-between;">
-        {{#each dogs}}
-        <li style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px; width: 48%;">
-            <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog" style="width: 50%; border-radius: 8px;"/>
-            <h3 style="margin-top: 16px;">{{this.name}}</h3>
-            <p>Breed: {{this.breed}}</p>
-            <p>Age: {{this.age}}</p>
-            <p>Gender: {{this.gender}}</p>
-            <p>Size: {{this.size}}</p>
-            <p>Color: {{this.color}}</p>
-            <p>Description: {{this.description}}</p>
-            <p>Shelter: {{this.shelter.name}}</p>
-            <a href="/applications/form?dogId={{this.id}}">Apply</a>
-        </li>
-        {{/each}}
-    </ul>
-
-    <h2 style="margin-top: 32px;">Your Applications</h2>
+<div class="p-8 max-w-7xl mx-auto">
+    <h2 class="text-2xl font-bold text-[#2D5446]">Your Applications</h2>
     {{#each applications}}
-    <li>
-        <a href="/applications/show/{{this.id}}">Application -
-            {{dateStr this.submissionDate}}</a>
-    </li>
+
+    <a class="flex flex-row justify-between mt-4 block rounded-xl p-4 list-none border-1 border-gray-200 bg-[#E6F5EF]"
+        href="/applications/show/{{this.id}}">
+        <span>
+            Application - {{dateStr this.submissionDate}}
+        </span>
+        <span>{{ this.status }}</span>
+    </a>
     {{/each}}
+    <h2 class="mt-16 text-2xl font-bold text-[#2D5446]">Apply to Adopt a Dog</h2>
+    <div
+        class="mt-4 flex flex-row flex-wrap gap-8 list-none p-0 justify-between grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {{#each dogs}}
+        <section class="border-1 border-gray-200 rounded-xl">
+            <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog"
+                class="w-full px-16 bg-[#E6F1EB] rounded-t-xl opacity-80" />
+            <div class="p-8">
+                <h3 class="text-xl font-bold text-[#2D5446]">{{this.name}}</h3>
+                <p>{{this.breed}}</p>
+                <p>{{this.age}} years old</p>
+                <p>{{this.shelter.name}}</p>
+                <p>Bio: {{this.description}}</p>
+                <div class="flex flex-row gap-2 mt-2">
+                    <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.gender}}</p>
+                    <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.size}}</p>
+                    <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.color}}</p>
+                </div>
+                <a class="bg-[#2D5446] block text-white px-3 py-2 rounded-xl mt-4 text-center"
+                    href="/applications/form?dogId={{this.id}}">Apply</a>
+            </div>
+        </section>
+        {{/each}}
+    </div>
 </div>

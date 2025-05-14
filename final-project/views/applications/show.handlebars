@@ -1,77 +1,80 @@
-<div style="padding: 32px; width: 75%; margin: 0 auto;">
-  <h1>Application - {{ dateStr application.submissionDate }}</h1>
+<div class="p-8 border-1 border-gray-200 rounded-xl max-w-2xl mx-auto my-8">
+  <h1 class="text-2xl font-bold text-[#2D5446] text-center">Application for {{dog.name}}</h1>
+  <p class="text-center"> {{ dateStr application.submissionDate }}</p>
 
-  <section style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
-    <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog" style="width: 50%; border-radius: 8px;"/>
-    <h3 style="margin-top: 16px;">{{dog.name}}</h3>
-    <p>Breed: {{dog.breed}}</p>
-    <p>Age: {{dog.age}}</p>
-    <p>Gender: {{dog.gender}}</p>
-    <p>Size: {{dog.size}}</p>
-    <p>Color: {{dog.color}}</p>
-    <p>Description: {{dog.description}}</p>
-    <p>Shelter: {{dog.shelter.name}}</p>
-</section>
-
-
-<h2 style="margin-top: 32px;">Application Details</h2>
-  
-  <section style="margin-top: 16px; border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
-    <div class="mb-4">
-      <p class="form-label">Status</p>
-      <p class="form-control-static">{{ application.status }}</p>
-    </div>
-
-    <div class="mb-4">
-      <p class="form-label">Name</p>
-      <p class="form-control-static">{{ application.name }}</p>
-    </div>    
-    
-    <div class="mb-4">
-      <p class="form-label">Phone</p>
-      <p class="form-control-static">{{ application.phone }}</p>
-    </div>
-    
-    <div class="mb-4">
-      <p class="form-label">Address</p>
-      <p class="form-control-static">{{ application.address }}</p>
-    </div>
-    
-    <div style="display: flex; flex-direction: row; gap: 16px;">
-      <div>
-        <p class="form-label">City</p>
-        <p class="form-control-static">{{ application.city }}</p>
-      </div>
-      <div>
-        <p class="form-label">State</p>
-        <p class="form-control-static">{{ application.state }}</p>
-      </div>
-      <div>
-        <p class="form-label">Zip Code</p>
-        <p class="form-control-static">{{ application.zipCode }}</p>
+  <section class="mt-8 border-1 border-gray-200 rounded-xl w-full mx-auto">
+    <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog"
+      class="w-full px-16 bg-[#E6F1EB] rounded-t-xl opacity-80" />
+    <div class="p-8">
+      <h3 class="text-xl font-bold text-[#2D5446]">{{dog.name}}</h3>
+      <p>{{dog.breed}}</p>
+      <p>{{dog.age}} years old</p>
+      <p>{{dog.shelter.name}}</p>
+      <p>Bio: {{dog.description}}</p>
+      <div class="flex flex-row gap-2 mt-2">
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.gender}}</p>
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.size}}</p>
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.color}}</p>
       </div>
     </div>
-    
-    <div class="mt-4 mb-4">
-      <p class="form-label">Housing Type</p>
-      <p class="form-control-static">{{ application.housingType }}</p>
-    </div>
-    
+  </section>
+
+  <h2 class="mt-8 text-xl font-bold text-[#2D5446]">Application Details</h2>
+
+  <section class="mt-4 border-1 border-[#E6F1EB] rounded-xl p-8">
     <div class="mb-4">
-      <p class="form-label">Activity Level</p>
-      <p class="form-control-static">{{ application.activityLevel }}</p>
+      <p class="font-semibold text-[#2D5446]">Status</p>
+      <p>{{ application.status }}</p>
     </div>
-    
+
     <div class="mb-4">
-      <p class="form-label">Why do you want to adopt this dog?</p>
-      <p class="form-control-static">{{ application.reason }}</p>
+      <p class="font-semibold text-[#2D5446]">Name</p>
+      <p>{{ application.name }}</p>
     </div>
-    
+
     <div class="mb-4">
-      <p class="form-label">Additional information shared</p>
-      <p class="form-control-static">{{ application.notes }}</p>
+      <p class="font-semibold text-[#2D5446]">Phone</p>
+      <p>{{ application.phone }}</p>
     </div>
-    
-    
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Address</p>
+      <p>{{ application.address }}</p>
+    </div>
+
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">City</p>
+      <p>{{ application.city }}</p>
+    </div>
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">State</p>
+      <p>{{ application.state }}</p>
+    </div>
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Zip Code</p>
+      <p>{{ application.zipCode }}</p>
+    </div>
+
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Housing Type</p>
+      <p>{{ application.housingType }}</p>
+    </div>
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Activity Level</p>
+      <p>{{ application.activityLevel }}</p>
+    </div>
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Why do you want to adopt this dog?</p>
+      <p>{{ application.reason }}</p>
+    </div>
+
+    <div class="mb-4">
+      <p class="font-semibold text-[#2D5446]">Additional information shared</p>
+      <p>{{ application.notes }}</p>
+    </div>
   </section>
 </div>

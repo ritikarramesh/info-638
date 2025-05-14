@@ -1,19 +1,25 @@
-<form action="/users/signup" role="form" method="post" style="padding: 32px; width: 50%; margin: 0 auto;">
-    <h1>Sign Up</h1>
-    <p>Please enter credentials to create an account</p>
+<form action="/users/signup" role="form" method="post"
+  class="w-full max-w-2xl mx-auto mt-16 bg-white border-1 border-gray-200 rounded-xl p-8">
+  <h1 class="text-2xl font-bold text-[#2D5446] text-center">BarkedIn</h1>
+
+  <h2 class="mt-8 text-xl font-bold text-[#2D5446]">Sign Up</h2>
+  <p class="text-gray-500">Please enter credentials to create an account</p>
+
   <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-  <div class="mb-4">
+  <div class="mt-4 flex flex-col">
     <label for="name" class="form-label">Name</label>
-    <input type="text" id="name" name="name" class="form-control">
+    <input type="text" id="name" name="name" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
   </div>
-  <div class="mb-4">
+  <div class="mt-4 flex flex-col">
     <label for="email" class="form-label">Email</label>
-    <input type="email" id="email" name="email" class="form-control">
+    <input type="email" id="email" name="email" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
   </div>
-  <div class="mb-4">
+  <div class="mt-4 flex flex-col">
     <label for="password" class="form-label">Password</label>
-    <input type="password" id="password" name="password" class="form-control">
+    <input type="password" id="password" name="password"
+      class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
   </div>
-  <button type="submit" class="btn btn-primary">Sign Up</button>
-  <a href="/users/login" class="btn btn-secondary">Already have an account? Log In</a>
+
+  <button type="submit" class="mt-8 bg-[#2D5446] text-white px-3 py-2 rounded-xl w-full">Sign Up</button>
+  <a href="/users/login" class="block mt-2 text-center">Already have an account? Log In</a>
 </form>

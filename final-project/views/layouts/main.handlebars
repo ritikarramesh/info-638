@@ -1,48 +1,49 @@
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>{{title}}</title>
-    <link rel="stylesheet" href="/bootstrap/css/bootstrap.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{{title}}</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 <body>
-    {{#if flash}}
-    <div style="text-align: center; padding: 8px;">
-        <strong>{{flash.intro}}</strong>
-        {{{flash.message}}}
-    </div>
-    {{/if}}
-    <nav style="padding: 8px 32px;">
-      <ul style="display: flex; justify-content: space-between; align-items: center; list-style: none; padding: 0;">
-        <li><a href="/" style="font-size: 24px; font-weight: bold; text-decoration: none;">BarkedIn</a></li>
-        {{#if currentUser}}
-          {{!-- <li>
-            <a href="/users/profile">Welcome {{currentUser.name}}</a>
-          </li> --}}
-          <li>
-            <form action="/users/logout" role="form" method="post">
-              <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-              <button type="submit" class="btn">Log Out</button>
-            </form>
-          </li>
-        {{else}}
-        <div style="display: flex; justify-content: space-between; align-items: center; list-style: none; padding: 0; gap: 32px;">
-          <li>
-            <a href="/users/signup">Sign Up</a>
-          </li>
-          <li>
-            <a href="/users/login">Log In</a>
-          </li>
-          </div>
-        {{/if}}
-      </ul>
-    </nav>
-    <div>
-        {{{body}}}
-    </div>
-    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
+  {{#if flash}}
+  <div class="text-center p-2">
+    <strong>{{flash.intro}}</strong>
+    {{{flash.message}}}
+  </div>
+  {{/if}}
+  <nav class="p-4 bg-[#80BE9E]">
+    <ul class="flex justify-between items-center">
+      <li class="text-2xl font-bold text-white"><a href="/">BarkedIn</a></li>
+      {{#if currentUser}}
+      <div class="flex gap-4 items-center">
+        <li>
+          <a href="/applications" class="jusify-self-start">My Applications</a>
+        </li>
+        <li>
+          <form action="/users/logout" role="form" method="post">
+            <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+            <button type="submit" class="bg-[#2D5446] text-white px-3 py-1 rounded-xl">Log Out</button>
+          </form>
+        </li>
+      </div>
+      {{else}}
+      <div class="flex gap-4 items-center">
+        <li class="bg-white px-3 py-1 rounded-xl">
+          <a href="/users/signup">Sign Up</a>
+        </li>
+        <li class="bg-[#2D5446] text-white px-3 py-1 rounded-xl">
+          <a href="/users/login">Log In</a>
+        </li>
+      </div>
+      {{/if}}
+    </ul>
+  </nav>
+  <div>
+    {{{body}}}
+  </div>
 </body>
 
 </html>

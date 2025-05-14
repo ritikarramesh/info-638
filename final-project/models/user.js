@@ -10,8 +10,8 @@ const encryptPassword = (password, salt) => {
   return crypto.pbkdf2Sync(password, salt, 310000, 32, 'sha256').toString('hex')
 }
 
-exports.register = async (user) => {
-  if (await exports.getByEmail(user.email)){
+exports.add = async (user) => {
+  if (await exports.getByEmail(user.email)) {
     return false
   }
   let salt = createSalt();

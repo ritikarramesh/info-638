@@ -12,7 +12,7 @@ exports.isLoggedIn = (req, res) => {
 }
 
 exports.isNotLoggedIn = (req, res) => {
-  if (! req.session.currentUser) {
+  if (!req.session.currentUser) {
     req.session.flash = {
       type: 'info',
       intro: 'Error!',

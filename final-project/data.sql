@@ -6,6 +6,6 @@ values
 insert into dogs (name, breed, age, gender, size, color, description, status, shelter_id)
 values 
   ('Buddy', 'Labrador Retriever', 3, 'male', 'large', 'black', 'Friendly and energetic.', 'available', 1),
-  ('Molly', 'Beagle', 5, 'female', 'medium', 'brown/white', 'Loves to cuddle.', 'available', 1),
-  ('Rocky', 'German Shepherd', 4, 'male', 'large', 'tan/black', 'Highly intelligent and alert.', 'available', 2),
+  ('Molly', 'Beagle', 5, 'female', 'medium', 'brown', 'Loves to cuddle.', 'available', 1),
+  ('Rocky', 'German Shepherd', 4, 'male', 'large', 'tan', 'Highly intelligent and alert.', 'available', 2),
   ('Luna', 'Poodle', 2, 'female', 'small', 'white', 'Playful and hypoallergenic.', 'available', 2);

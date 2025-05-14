@@ -1,67 +1,86 @@
-<section class="" style="padding: 32px 32px 150px 32px; background-color: #E6F5EF;">
-    <h1>Find Your Perfect Furry Companion</h1>
-    <p>Connect with local shelters and find the perfect dog to adopt. Lorem Ipsum Lorem Ipsum Lorem Ipsum Lorem Ipsum
+<section class="px-8 py-32 bg-[#E6F5EF]">
+    <div class="max-w-7xl mx-auto">
+        <h1 class="text-3xl font-bold text-[#2D5446]">Find Your Perfect Furry Companion</h1>
+        <p class="mt-4 font-semibold">Connect with local shelters and find the perfect dog to adopt. Lorem Ipsum Lorem
+            Ipsum Lorem Ipsum Lorem Ipsum
+    </div>
     </p>
 </section>
-<section style="padding: 32px;">
-    <h2 style="text-align: center;">Dogs Looking for Homes</h2>
-    <div style="margin-top: 32px; display: flex; flex-direction: row; gap: 16px; flex-wrap: wrap;">
-        {{#each dogs}}
-        <section style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px; width: 48%;">
-            <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog" style="width: 50%; border-radius: 8px;"/>
-            <h3 style="margin-top: 16px;">{{this.name}}</h3>
-            <p>Breed: {{this.breed}}</p>
-            <p>Age: {{this.age}}</p>
-            <p>Gender: {{this.gender}}</p>
-            <p>Size: {{this.size}}</p>
-            <p>Color: {{this.color}}</p>
-            <p>Description: {{this.description}}</p>
-            <p>Shelter: {{this.shelter.name}}</p>
-        </section>
-        {{/each}}
+<section class="px-8 py-16">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-[#2D5446] text-center">Dogs Looking for Homes</h2>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {{#each dogs}}
+            <section class="border-1 border-gray-200 rounded-xl">
+                <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog"
+                    class="w-full px-16 bg-[#E6F1EB] rounded-t-xl opacity-80" />
+                <div class="p-8">
+                    <h3 class="text-xl font-bold text-[#2D5446]">{{this.name}}</h3>
+                    <p>{{this.breed}}</p>
+                    <p>{{this.age}} years old</p>
+                    <p>{{this.shelter.name}}</p>
+                    <p>Bio: {{this.description}}</p>
+                    <div class="flex flex-row gap-2 mt-2">
+                        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.gender}}</p>
+                        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.size}}</p>
+                        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{this.color}}</p>
+                    </div>
+                </div>
+            </section>
+            {{/each}}
+        </div>
     </div>
 </section>
 
 
-<section style="padding: 32px; background-color: #E6F1EB;">
-    <h2 style="text-align: center;">How It Works</h2>
-    <div style="margin-top: 32px; display: flex; flex-direction: row; gap: 16px;">
-        <section style="background-color: white; border: 1px solid lightgray; border-radius: 8px; padding: 32px;">
-            <h3>Browse Dogs</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta animi, molestias,
-                itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique cupiditate
-                incidunt maiores voluptas fugiat?</p>
-        </section>
-        <section style="background-color: white; border: 1px solid lightgray; border-radius: 8px; padding: 32px;">
-            <h3>Submit App</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta animi, molestias,
-                itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique cupiditate
-                incidunt maiores voluptas fugiat?</p>
-        </section>
-        <section style="background-color: white; border: 1px solid lightgray; border-radius: 8px; padding: 32px;">
-            <h3>Get Approved</h3>
-            <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta animi, molestias,
-                itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique cupiditate
-                incidunt maiores voluptas fugiat?</p>
-        </section>
+<section class="px-8 py-16 bg-[#E6F1EB]">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-[#2D5446] text-center">How It Works</h2>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            <section class="border-1 border-gray-200 rounded-xl p-8 bg-white">
+                <h3 class="text-xl font-bold text-[#2D5446]">1. Browse Dogs</h3>
+                <p class="mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta
+                    animi, molestias,
+                    itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique
+                    cupiditate
+                    incidunt maiores voluptas fugiat?</p>
+            </section>
+            <section class="border-1 border-gray-200 rounded-xl p-8 bg-white">
+                <h3 class="text-xl font-bold text-[#2D5446]">2. Submit App</h3>
+                <p class="mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta
+                    animi, molestias,
+                    itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique
+                    cupiditate
+                    incidunt maiores voluptas fugiat?</p>
+            </section>
+            <section class="border-1 border-gray-200 rounded-xl p-8 bg-white">
+                <h3 class="text-xl font-bold text-[#2D5446]">3. Get Approved</h3>
+                <p class="mt-4">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Eaque facilis eius soluta
+                    animi, molestias,
+                    itaque quidem nemo delectus mollitia recusandae officia molestiae libero debitis similique
+                    cupiditate
+                    incidunt maiores voluptas fugiat?</p>
+            </section>
+        </div>
     </div>
 </section>
 
-<section style="padding: 32px;">
-    <h2 style="text-align: center;">Partner Shelters</h2>
-    <div style="margin-top: 32px; display: flex; flex-direction: row; gap: 16px; flex-wrap: wrap;">
-        {{#each shelters}}
-        <section
-            style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px; width: 48%; background-color: #E6F5EF;">
-            <h3>{{this.name}}</h3>
-            <p>{{this.city}}, {{this.state}}</p>
-            <p>{{this.email}}</p>
-        </section>
-        {{/each}}
+<section class="px-8 py-16">
+    <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-[#2D5446] text-center">Partner Shelters</h2>
+        <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {{#each shelters}}
+            <section class="border-1 border-gray-200 rounded-xl p-8 bg-[#E6F5EF]">
+                <h3 class="text-xl font-bold text-[#2D5446]">{{this.name}}</h3>
+                <p class="mt-4">{{this.city}}, {{this.state}}</p>
+                <p>{{this.email}}</p>
+                <p>{{this.phone}}</p>
+            </section>
+            {{/each}}
+        </div>
     </div>
-
 </section>
 
-<section style="text-align: center; padding: 200px 0 8px 0; background-color: #2D5446;">
-    <p style="color: white;">2025 BarkedIn. All rights reserved.</p>
+<section class="pt-48 pb-4 bg-[#2D5446]">
+    <p class="text-white text-center">2025 BarkedIn. All rights reserved.</p>
 </section>

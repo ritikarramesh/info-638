@@ -1,75 +1,81 @@
-<div style="padding: 32px; width: 75%; margin: 0 auto;">
-<h1>Dog Adoption Application</h1>
-    <p>Please fill out this form to apply to adopt a dog from our network</p>
+<div class="p-8 border-1 border-gray-200 rounded-xl max-w-2xl mx-auto my-8">
+  <h1 class="text-2xl font-bold text-[#2D5446] text-center">Dog Adoption Application</h1>
+  <p class="mt-2 text-center">Please fill out this form to apply to adopt a dog from our network</p>
 
-<section style="border: 1px solid #E6F1EB; border-radius: 8px; padding: 32px;">
-    <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog" style="width: 50%; border-radius: 8px;"/>
-    <h3 style="margin-top: 16px;">{{dog.name}}</h3>
-    <p>Breed: {{dog.breed}}</p>
-    <p>Age: {{dog.age}}</p>
-    <p>Gender: {{dog.gender}}</p>
-    <p>Size: {{dog.size}}</p>
-    <p>Color: {{dog.color}}</p>
-    <p>Description: {{dog.description}}</p>
-    <p>Shelter: {{dog.shelter.name}}</p>
-</section>
+  <section class="mt-8 border-1 border-gray-200 rounded-xl w-full mx-auto">
+    <img src='https://i.postimg.cc/NF0wGDtP/temp-Image-VKAQFJ.avif' alt="Dog"
+      class="w-full px-16 bg-[#E6F1EB] rounded-t-xl opacity-80" />
+    <div class="p-8">
+      <h3 class="text-xl font-bold text-[#2D5446]">{{dog.name}}</h3>
+      <p>{{dog.breed}}</p>
+      <p>{{dog.age}} years old</p>
+      <p>{{dog.shelter.name}}</p>
+      <p>Bio: {{dog.description}}</p>
+      <div class="flex flex-row gap-2 mt-2">
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.gender}}</p>
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.size}}</p>
+        <p class="rounded-xl bg-[#E6F1EB] px-3 py-1">{{dog.color}}</p>
+      </div>
+    </div>
+  </section>
 
-<form action="/applications/insert" role="form" method="post" style="margin-top: 32px;">
-    
-  <input type="hidden" name="_csrf" value="{{_csrfToken}}">
-  <input type="hidden" name="dogId" value="{{dog.id}}">
-  <div class="mb-4">
-    <label for="name" class="form-label">Name</label>
-    <input type="text" id="name" name="name" class="form-control">
-  </div>
-  <div class="mb-4">
-    <label for="phone" class="form-label">Phone</label>
-    <input type="tel" id="phone" name="phone" class="form-control">
-  </div>
-  <div class="mb-4">
-    <label for="address" class="form-label">Address</label>
-    <input type="text" id="address" name="address" class="form-control">
-  </div>
-  <div style="display: flex; flex-direction: row; gap: 16px;">
-    <div>
-        <label for="city" class="form-label">City</label>
-        <input type="text" id="city" name="city" class="form-control">
+  <form action="/applications/insert" role="form" method="post" class="mt-8">
+
+    <input type="hidden" name="_csrf" value="{{_csrfToken}}">
+    <input type="hidden" name="dogId" value="{{dog.id}}">
+    <div class="mt-4 flex flex-col">
+      <label for="name" class="form-label">Name</label>
+      <input type="text" id="name" name="name" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
     </div>
-    <div>
-        <label for="state" class="form-label">State</label>
-        <input type="text" id="state" name="state" class="form-control">
+    <div class="mt-4 flex flex-col">
+      <label for="phone" class="form-label">Phone</label>
+      <input type="tel" id="phone" name="phone" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
     </div>
-    <div>
-        <label for="zipCode" class="form-label">Zip Code</label>
-        <input type="text" id="zipCode" name="zipCode   " class="form-control">
+    <div class="mt-4 flex flex-col">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" id="address" name="address" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
     </div>
-  </div>
-      <div class="mt-4 mb-4">
-    <label for="housingType" class="form-label">Housing Type</label>
-    <select id="housingType" name="housingType" class="form-control">
-      <option value="">Select one</option>
-      <option value="apartment">Apartment</option>
-      <option value="townhouse">Townhouse</option>
-      <option value="house">House</option>
-    </select>
-  </div>
-  <div class="mb-4">
-    <label for="activityLevel" class="form-label">Your Activity Level</label>
-    <select id="activityLevel" name="activityLevel" class="form-control">
-      <option value="">Select one</option>
-      <option value="mild">Mild</option>
-      <option value="medium">Medium</option>
-      <option value="high">High</option>
-    </select>
-  </div>
-  <div class="mb-4">
-    <label for="reason" class="form-label">Why do you want to adopt this dog?</label>
-    <textarea id="reason" name="reason" class="form-control" rows="4"></textarea>
-  </div>
-  <div class="mb-4">
-    <label for="notes" class="form-label">Any additional information you'd like to share?</label>
-    <textarea id="notes" name="notes" class="form-control" rows="4"></textarea>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+    <div class="mt-4 flex flex-col flex-1">
+      <label for="city" class="form-label">City</label>
+      <input type="text" id="city" name="city" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
+    </div>
+
+    <div class="mt-4 flex flex-col flex-1">
+      <label for="state" class="form-label">State</label>
+      <input type="text" id="state" name="state" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
+    </div>
+    <div class="mt-4 flex flex-col flex-1">
+      <label for="zipCode" class="form-label">Zip Code</label>
+      <input type="text" id="zipCode" name="zipCode" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
+    </div>
+    <div class="mt-4 flex flex-col">
+      <label for="housingType" class="form-label">Housing Type</label>
+      <select id="housingType" name="housingType" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
+        <option value="">Select one</option>
+        <option value="apartment">Apartment</option>
+        <option value="townhouse">Townhouse</option>
+        <option value="house">House</option>
+      </select>
+    </div>
+    <div class="mt-4 flex flex-col">
+      <label for="activityLevel" class="form-label">Your Activity Level</label>
+      <select id="activityLevel" name="activityLevel" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2">
+        <option value="">Select one</option>
+        <option value="mild">Mild</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+      </select>
+    </div>
+    <div class="mt-4 flex flex-col">
+      <label for="reason" class="form-label">Why do you want to adopt this dog?</label>
+      <textarea id="reason" name="reason" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2"
+        rows="4"></textarea>
+    </div>
+    <div class="mt-4 flex flex-col">
+      <label for="notes" class="form-label">Any additional information you'd like to share?</label>
+      <textarea id="notes" name="notes" class="mt-1 block rounded-xl border-1 border-gray-200 px-3 py-2"
+        rows="4"></textarea>
+    </div>
+    <button type="submit" class="mt-4 bg-[#2D5446] text-white px-3 py-2 rounded-xl w-full">Submit</button>
+  </form>
 </div>

@@ -8,7 +8,7 @@ router.get('/signup', async (req, res, next) => {
   if (helpers.isLoggedIn(req, res)) {
     return
   }
-  res.render('users/signup', { title: 'BookedIn || User registration' });
+  res.render('users/signup', { title: 'BarkedIn || Sign Up' });
 });
 
 router.post('/signup', async (req, res, next) => {
@@ -16,21 +16,22 @@ router.post('/signup', async (req, res, next) => {
     return
   }
   console.log('body: ' + JSON.stringify(req.body))
-  let result = await User.register(req.body);
+  let result = await User.add(req.body);
   if (result) {
     req.session.flash = {
       type: 'info',
       intro: 'Success!',
-      message: `the user ${req.body.name} has been created!`,
+      message: `The user ${req.body.name} has been created!`,
     };
     res.redirect(303, '/')
   } else {
     res.render('users/signup', {
-      title: 'BookedIn || User registration',
+      title: 'BarkedIn || Sign Up',
       flash: {
         type: 'danger',
         intro: 'Error!',
-        message: `This user already exists`}
+        message: `This user already exists`
+      }
     });
   }
 });
@@ -39,7 +40,7 @@ router.get('/login', async (req, res, next) => {
   if (helpers.isLoggedIn(req, res)) {
     return
   }
-  res.render('users/login', { title: 'BookedIn || User login' });
+  res.render('users/login', { title: 'BarkedIn || Log In' });
 });
 
 router.post('/login', async (req, res, next) => {
@@ -48,21 +49,22 @@ router.post('/login', async (req, res, next) => {
   }
   console.log('body: ' + JSON.stringify(req.body))
   let user = await User.login(req.body);
-  if(user) {
+  if (user) {
     req.session.currentUser = user;
     req.session.flash = {
       type: 'info',
       intro: 'Success!',
-      message: `the user ${user.name} has been logged in!`,
+      message: `The user ${user.name} has been logged in!`,
     };
     res.redirect(303, '/applications')
   } else {
     res.render('users/login', {
-      title: 'BookedIn || User Login',
+      title: 'BarkedIn || Log In',
       flash: {
         type: 'danger',
         intro: 'Error!',
-        message: `Wrong email and password combination or the user could not be found`}
+        message: `Wrong email and password combination or the user could not be found`
+      }
     });
 
   }
@@ -80,13 +82,5 @@ router.post('/logout', async (req, res, next) => {
   };
   res.redirect(303, '/')
 });
-
-// router.get('/profile', async (req, res, next) => {
-//   if (helpers.ForceLoggedInUser(req, res)) {
-//     return
-//   }
-//   const booksUser = await BookUser.allForUser(req.session.currentUser);
-//   res.render('users/profile', { title: 'BookedIn || Profile', user: req.session.currentUser, booksUser: booksUser });
-// });
 
 module.exports = router;
